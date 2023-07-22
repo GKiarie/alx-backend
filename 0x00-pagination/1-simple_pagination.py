@@ -7,6 +7,15 @@ import math
 from typing import List
 
 
+def index_range(page: int, page_size: int) -> tuple:
+    """
+    ftn takes in two ints and returns atuple
+    """
+    start_index: int = (page - 1) * page_size
+    end_index: int = start_index + page_size
+    return (start_index, end_index)
+
+
 class Server:
     """Server class to paginate a database of popular baby names.
     """
@@ -26,15 +35,6 @@ class Server:
 
         return self.__dataset
 
-    @staticmethod
-    def index_range(page: int, page_size: int) -> tuple:
-        """
-        ftn takes in two ints and returns atuple
-        """
-        start_index: int = (page - 1) * page_size
-        end_index: int = start_index + page_size
-        return (start_index, end_index)
-
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
         # Verify that both arguments are integers greater than 0
         assert isinstance(page, int) and page > 0, (
@@ -45,7 +45,7 @@ class Server:
         )
 
         # Calculate the start and end indexes using index_range function
-        start_index, end_index = self.index_range(page, page_size)
+        start_index, end_index = index_range(page, page_size)
 
         # Return the appropriate page of the dataset
         return self.dataset()[start_index:end_index]
