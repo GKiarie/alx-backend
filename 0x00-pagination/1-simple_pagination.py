@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """
-ftn
+Server class with various ftns
 """
 import csv
 import math
@@ -26,5 +26,24 @@ class Server:
 
         return self.__dataset
 
+    @staticmethod
+    def index_range(page: int, page_size: int) -> tuple:
+        """
+        ftn takes in two ints and returns atuple
+        """
+        start_index: int = (page - 1) * page_size
+        end_index: int = start_index + page_size
+        return (start_index, end_index)
+
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
-            pass
+        # Verify that both arguments are integers greater than 0
+        assert isinstance(page, int) and page > 0, /
+        "Page should be an integer greater than 0."
+        assert isinstance(page_size, int) and page_size > 0, /
+        "Page_size should be an integer greater than 0."
+
+        # Calculate the start and end indexes using index_range function
+        start_index, end_index = self.index_range(page, page_size)
+
+        # Return the appropriate page of the dataset
+        return self.dataset()[start_index:end_index]
