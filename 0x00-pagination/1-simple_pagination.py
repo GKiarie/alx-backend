@@ -36,9 +36,15 @@ class Server:
         return self.__dataset
 
     def get_page(self, page: int = 1, page_size: int = 10) -> List[List]:
+        """takes two integer arguments page with default value 1 and
+        page_size with default value 10."""
         # Verify that both arguments are integers greater than 0
-        assert isinstance(page, int) and page > 0
-        assert isinstance(page_size, int) and page_size > 0
+        assert isinstance(page, int) and page > 0, (
+            "Page should be an integer greater than 0."
+        )
+        assert isinstance(page_size, int) and page_size > 0, (
+            "Page_size should be an integer greater than 0."
+        )
 
         # Calculate the start and end indexes using index_range function
         start_index, end_index = index_range(page, page_size)
