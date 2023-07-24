@@ -42,8 +42,7 @@ class Server:
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
         """Ftn that returns a dict with updated k, v pairs"""
         # Verify that the index argument is within a valid range
-        assert (isinstance(index, int)
-                                 and index >= 0), "Invalid index value."
+        assert (isinstance(index, int) and index >= 0), "Invalid index value."
         assert 0 <= index < len(self.indexed_dataset())
         assert isinstance(page_size, int) and page_size > 0
 
