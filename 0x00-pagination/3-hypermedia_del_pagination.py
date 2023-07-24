@@ -40,9 +40,12 @@ class Server:
         return self.__indexed_dataset
 
     def get_hyper_index(self, index: int = None, page_size: int = 10) -> Dict:
+        """Ftn that returns a dict with updated k, v pairs"""
         # Verify that the index argument is within a valid range
-        assert index is None or (isinstance(index, int)
+        assert (isinstance(index, int)
                                  and index >= 0), "Invalid index value."
+        assert 0 <= index < len(self.indexed_dataset())
+        assert isinstance(page_size, int) and page_size > 0
 
         # Get the dataset length and calculate total pages
         total_items = len(self.dataset())
