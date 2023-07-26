@@ -3,9 +3,9 @@
 BaseCaching = __import__('base_caching').BaseCaching
 
 
-
 class MRUCache(BaseCaching):
-    """ MRUCache inherits from BaseCaching and implements a caching system using MRU algorithm
+    """ MRUCache inherits from BaseCaching and implements
+    a caching system using MRU algorithm
     """
 
     def __init__(self):
@@ -32,7 +32,7 @@ class MRUCache(BaseCaching):
         """ Get an item from the cache using MRU algorithm
         """
         if key is not None and key in self.cache_data:
-            # Move the accessed key to the end of the queue (most recently used)
+            # Move accessed key to end of queue (most recently used)
             self.cache_queue.remove(key)
             self.cache_queue.append(key)
             return self.cache_data[key]
